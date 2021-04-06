@@ -37,7 +37,7 @@ const LoginScreen = ({navigation}) => {
       return;
     }
     setLoading(true);
-    let dataToSend = {user_email: userEmail, user_password: userPassword};
+    let dataToSend = {login: userEmail, password: userPassword};
     let formBody = [];
     for (let key in dataToSend) {
       let encodedKey = encodeURIComponent(key);
@@ -46,7 +46,9 @@ const LoginScreen = ({navigation}) => {
     }
     formBody = formBody.join('&');
 
-    fetch('https://aboutreact.herokuapp.com/login.php', {
+    console.log(formBody)
+
+    fetch('https://pexicom.com/avisgoo/api/login.php', {
       method: 'POST',
       body: formBody,
       headers: {
@@ -60,9 +62,9 @@ const LoginScreen = ({navigation}) => {
         setLoading(false);
         console.log(responseJson);
         // If server response message same as Data Matched
-        if (responseJson.status == 1) {
-          AsyncStorage.setItem('user_id', responseJson.data[0].user_id);
-          console.log(responseJson.data[0].user_id);
+        if (responseJson.etat == 1) {
+          AsyncStorage.setItem('user_id', responseJson.id);
+          console.log(responseJson.id);
           navigation.replace('DrawerNavigationRoutes');
         } else {
           setErrortext('Please check your email id or password');
