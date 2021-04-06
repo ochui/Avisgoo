@@ -64,13 +64,13 @@ const stylesSidebar = StyleSheet.create({
   sideMenuContainer: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#fff',
+    backgroundColor: '#307ECC',
     paddingTop: 40,
     color: 'white',
   },
   profileHeader: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
+    backgroundColor: '#307ECC',
     padding: 15,
     textAlign: 'center',
   },
