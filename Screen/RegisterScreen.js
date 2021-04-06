@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
     borderColor: '#7DE24E',
     height: 40,
     alignItems: 'center',
-    borderRadius: 30,
+    borderRadius: 3,
     marginLeft: 35,
     marginRight: 35,
     marginTop: 20,
@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
     borderWidth: 1,
-    borderRadius: 30,
+    borderRadius: 3,
     borderColor: '#dadae8',
   },
   errorTextStyle: {
