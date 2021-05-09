@@ -4,52 +4,54 @@
 import React from 'react';
 
 // Import Navigators from React Navigation
-import {createStackNavigator} from '@react-navigation/stack';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 // Import Screens
 import HomeScreen from './DrawerScreens/HomeScreen';
-import SettingsScreen from './DrawerScreens/SettingScreen';
+import ReviewScreen from './DrawerScreens/reviewScreen';
 import CustomSidebarMenu from './Components/CustomSidebarMenu';
 import NavigationDrawerHeader from './Components/NavigationDrawerHeader';
+import { Ionicons } from "@expo/vector-icons";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-const homeScreenStack = ({navigation}) => {
+const homeScreenStack = ({ navigation }) => {
   return (
     <Stack.Navigator initialRouteName="HomeScreen">
       <Stack.Screen
         name="HomeScreen"
         component={HomeScreen}
         options={{
-          title: 'Home', //Set Header Title
+          title: 'Statistics', //Set Header Title
           headerLeft: () => (
             <NavigationDrawerHeader navigationProps={navigation} />
           ),
           headerStyle: {
-            backgroundColor: '#fff', //Set Header color
+            backgroundColor: '#307ECC', //Set Header color
           },
           headerTintColor: '#fff', //Set Header text color
           headerTitleStyle: {
             fontWeight: 'bold', //Set Header text style
           },
+          headerTitleAlign: 'center'
         }}
       />
     </Stack.Navigator>
   );
 };
 
-const settingScreenStack = ({navigation}) => {
+const reviewScreenStack = ({ navigation }) => {
   return (
     <Stack.Navigator
-      initialRouteName="SettingsScreen"
+      initialRouteName="ReviewScreen"
       screenOptions={{
         headerLeft: () => (
           <NavigationDrawerHeader navigationProps={navigation} />
         ),
         headerStyle: {
-          backgroundColor: '#fff', //Set Header color
+          backgroundColor: '#307ECC', //Set Header color
         },
         headerTintColor: '#fff', //Set Header text color
         headerTitleStyle: {
@@ -57,10 +59,11 @@ const settingScreenStack = ({navigation}) => {
         },
       }}>
       <Stack.Screen
-        name="SettingsScreen"
-        component={SettingsScreen}
+        name="ReviewScreen"
+        component={ReviewScreen}
         options={{
-          title: 'Settings', //Set Header Title
+          title: 'Reviews Goo', //Set Header Title
+          headerTitleAlign: 'center'
         }}
       />
     </Stack.Navigator>
@@ -73,22 +76,40 @@ const DrawerNavigatorRoutes = (props) => {
       drawerContentOptions={{
         activeTintColor: '#cee1f2',
         color: '#cee1f2',
-        itemStyle: {marginVertical: 5, color: 'white'},
+        itemStyle: { marginVertical: 5, color: 'white' },
         labelStyle: {
           color: '#d8d8d8',
         },
       }}
-      screenOptions={{headerShown: false}}
+      screenOptions={{ headerShown: false }}
       drawerContent={CustomSidebarMenu}>
       <Drawer.Screen
         name="homeScreenStack"
-        options={{drawerLabel: 'Home Screen'}}
+        options={{
+          drawerLabel: 'Statistics',
+          drawerIcon: ({ focused, size }) => (
+            <Ionicons
+              name="bar-chart"
+              size={size}
+              color={focused ? '#7cc' : '#ccc'}
+            />
+          ),
+        }}
         component={homeScreenStack}
       />
       <Drawer.Screen
-        name="settingScreenStack"
-        options={{drawerLabel: 'Setting Screen'}}
-        component={settingScreenStack}
+        name="reviewScreenStack"
+        options={{
+          drawerLabel: 'Reviews Goo',
+          drawerIcon: ({ focused, size }) => (
+            <Ionicons
+              name="paper-plane"
+              size={size}
+              color={focused ? '#7cc' : '#ccc'}
+            />
+          ),
+        }}
+        component={reviewScreenStack}
       />
     </Drawer.Navigator>
   );
